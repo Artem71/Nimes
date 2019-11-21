@@ -1,13 +1,28 @@
 <template>
-  <Navbar />
+  <div>
+    <Navbar />
+    <Header />
+    <BlockTitle :title="'Bestsellers'" />
+  </div>
 </template>
 
 <script>
 import Navbar from '@/components/app/Navbar.vue'
+import Header from '@/components/main/Header.vue'
+import BlockTitle from '@/components/app/BlockTitle.vue'
 
 export default {
+  data() {
+    return {
+      mainPage: true
+    }
+  },
   components: {
-    Navbar
+    Navbar, Header, BlockTitle
   }
 }
 </script>
+
+<style lang="sass" scoped>
+
+</style>
