@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="container">
     <router-view />
   </div>
 </template>
@@ -13,6 +13,16 @@ export default {
 }
 </script>
 
-<style>
+<style lang="sass">
+  #app
+    font-family: 'Work Sans', sans-serif
+    font-size: 16px
+
+    a
+      color: #151c22
+
+  @media (min-width: 1200px)
+    .container 
+      max-width: 1170px !important
 
 </style>
