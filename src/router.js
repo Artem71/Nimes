@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Main from '@/views/Main'
 
 Vue.use(VueRouter)
 
@@ -9,7 +10,7 @@ const router = new VueRouter({
     {
       path: '/',
       name: 'main',
-      component: () => import('./views/Main.vue')
+      component: Main
     },
     {
       path: '/categories',
@@ -20,8 +21,12 @@ const router = new VueRouter({
       path: '/product',
       name: 'product-card',
       component: () => import('./views/ProductCard.vue')
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: () => import('./views/Admin.vue')
     }
-    
   ]
 })
 
