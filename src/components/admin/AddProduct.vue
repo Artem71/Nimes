@@ -63,30 +63,66 @@
               </label>
             </div>
           </div>
-
-          <div class="form-group pick-size">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="productSize-xs" value="xs" v-model="size.xs">
-              <label class="form-check-label" for="productSize-xs">xs</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="productSize-s" value="s" v-model="size.s">
-              <label class="form-check-label" for="productSize-s">s</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="productSize-m" value="m" v-model="size.m">
-              <label class="form-check-label" for="productSize-m">m</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="productSize-l" value="l" v-model="size.l">
-              <label class="form-check-label" for="productSize-l">l</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="productSize-xl" value="xl" v-model="size.xl">
-              <label class="form-check-label" for="productSize-xl">xl</label>
-            </div>
-          </div>
-
+          <table class="table table-striped table-dark" ref="table">
+            <thead>
+              <tr ref="colorName">
+                <th scope="col">Size</th>
+                <th scope="col" data-color="light-blue"><span class="productColor-circle"></span></th>
+                <th scope="col" data-color="dark-blue"><span class="productColor-circle dark-blue"></span></th>
+                <th scope="col" data-color="grey"><span class="productColor-circle grey"></span></th>
+                <th scope="col" data-color="black"><span class="productColor-circle black"></span></th>
+                <th scope="col" data-color="white"><span class="productColor-circle white"></span></th>
+                <th scope="col" data-color="blue"><span class="productColor-circle blue"></span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">xs</th>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+              </tr>
+              <tr>
+                <th scope="row">s</th>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+              </tr>
+              <tr>
+                <th scope="row">m</th>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+              </tr>
+              <tr>
+                <th scope="row">l</th>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+              </tr>
+              <tr>
+                <th scope="row">xl</th>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+                <td><input type="text" placeholder="0" class="table-input"></td>
+              </tr>
+            </tbody>
+          </table>
           <div class="form-group">
             <label for="productPrice">Введите стоимость продукта</label>
             <input type="text" class="form-control" id="productPrice" placeholder="Введите стоимость продукта" v-model="price">
@@ -107,19 +143,48 @@ export default {
       name: '',
       description: '',
       color: {
-        'light-blue': 0,
-        'dark-blue': 0,
-        'grey': 0,
-        'black': 0,
-        'white': 0,
-        'blue': 0
-      },
-      size: {
-        xs: 0,
-        s: 0,
-        m: 0,
-        l: 0,
-        xl: 0
+        'light-blue': {
+          xs: 0,
+          s: 0,
+          m: 0,
+          l: 0,
+          xl: 0
+        },
+        'dark-blue': {
+          xs: 0,
+          s: 0,
+          m: 0,
+          l: 0,
+          xl: 0
+        },
+        'grey': {
+          xs: 0,
+          s: 0,
+          m: 0,
+          l: 0,
+          xl: 0
+        },
+        'black': {
+          xs: 0,
+          s: 0,
+          m: 0,
+          l: 0,
+          xl: 0
+        },
+        'white': {
+          xs: 0,
+          s: 0,
+          m: 0,
+          l: 0,
+          xl: 0
+        },
+        'blue': {
+          xs: 0,
+          s: 0,
+          m: 0,
+          l: 0,
+          xl: 0
+        },
       },
       price: 0,
       showPopup: false
@@ -127,16 +192,26 @@ export default {
   },
   methods: {
     handleAddProducts() {
-      const formData = {
-        category: this.category,
-        name: this.name,
-        description: this.description,
-        color: this.color,
-        size: this.size,
-        price: this.price
-      }
+      const rows = this.$refs.table.rows
 
-      console.log(formData)
+      for (let i = 1; i < rows.length; i++) {
+        rows[i].childNodes.forEach((td, i) => {
+          if (td.tagName === 'TD') {
+            if (td.childNodes[0].value !== '') {
+              // Получить указанное колличество
+              const quantity = td.childNodes[0].value
+
+              // Получить выбранный размер
+              const size = td.childNodes[0].parentNode.parentNode.childNodes[0].innerHTML
+
+              // Получить выбранный цвет
+              const pickColor = this.$refs.colorName.childNodes[i].getAttribute('data-color')
+
+              this.color[pickColor][size] = quantity
+            }
+          }
+        })
+      }
     },
     addColor(event) {
       const currencyColor = event.target
@@ -152,6 +227,7 @@ export default {
 <style lang="sass" scoped>
   .productColor-circle 
     display: block
+    margin: 0 auto
     width: 20px
     height: 20px
     background-color: #B0C3C7
@@ -207,25 +283,11 @@ export default {
   .pick-color .label-blue:before
     border: 1px solid #4193DA
   
-  .pick-size .form-check-label
-    font-size: 18px
-    font-weight: 500
-    text-transform: Uppercase
-    color: #727A82
-
-  .pick-size .form-check-input
-    display: none
-
-  .pick-size .form-check-input:checked + .form-check-label
-    color: #151C22
-
-  .alert
-    position: absolute
-    top: 50%
-    left: 50%
-    width: 460px
-    height: 240px
-    margin-left: -230px
-    margin-top: -120px
-    z-index: 100
+  .table-input
+    background-color: transparent
+    border: none
+    outline: none
+    width: 100%
+    text-align: center
+    color: #fff
 </style>
