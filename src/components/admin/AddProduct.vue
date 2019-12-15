@@ -2,13 +2,13 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <form @submit.prevent="handleAddProducts">
+        <form @submit.prevent="handleAddProducts" enctype="multipart/form-data" ref="form">
           <h2 class="card-title">Добавить продукт</h2>
 
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="productCategory">Выберите категорию продукта</label>
-              <select class="form-control" id="productCategory" v-model="formData.category">
+              <select class="form-control" id="productCategory" v-model="formData.category" name="category">
                 <option disabled>Categories</option>
                 <option>Overalls</option>
                 <option>Jacket</option>
@@ -16,16 +16,36 @@
                 <option>Jeans</option>
               </select>
             </div>
-            <div class="form-group col-md-6">
-              <label for="productName">Введите название продукта</label>
-              <input type="text" class="form-control" id="productName" placeholder="Введите название продукта" v-model="formData.name">
+            <div class="form-group col-md-6 add-file-wrapper">
+              <div class="custom-file">
+                <input 
+                  type="file"
+                  ref="images" 
+                  accept="image/*" 
+                  name="images"
+                  multiple="true"
+                  class="custom-file-input"
+                  id="customFile"
+                  @change="handleFileUpload"
+                >
+                <label class="custom-file-label" for="customFile">Добавте фото</label>
+              </div>
             </div>
+            <div v-if="images" class="w-100 text-center mt-3" style="height: 100px" ref="imgContainer"></div>
           </div>
 
           <div class="form-group">
             <label for="productDescription">Введите описание продукта</label>
-            <textarea type="text" class="form-control" id="productDescription" placeholder="Введите описание продукта" v-model="formData.description"></textarea>
+            <textarea type="text" 
+                      class="form-control" 
+                      id="productDescription" 
+                      placeholder="Введите описание продукта" 
+                      v-model="formData.description"
+                      name="description"
+            ></textarea>
           </div>
+
+          
 
           <h2 class="text-center">Укажите цвет, размер и колличество товара</h2>
           <table class="table table-striped table-bordered table-dark" ref="table">
@@ -88,10 +108,31 @@
               </tr>
             </tbody>
           </table>
-          <div class="form-group">
-            <label for="productPrice">Введите стоимость продукта</label>
-            <input type="text" class="form-control" id="productPrice" placeholder="Введите стоимость продукта" v-model="formData.price">
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="productPrice">Введите стоимость продукта</label>
+              <input type="text" 
+                    class="form-control" 
+                    id="productPrice" 
+                    placeholder="Введите стоимость продукта" 
+                    v-model="formData.price"
+                    name="price"
+              >
+            </div>
+            <div class="form-check">
+              <input 
+                class="form-check-input" 
+                type="checkbox" 
+                v-model="formData.bestsellers"
+                id="defaultCheck1"
+              >
+              <label class="form-check-label" for="defaultCheck1">
+                This is bestsellers?
+              </label>
+            </div>
           </div>
+          
           
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -106,9 +147,9 @@ import axios from 'axios'
 export default {
   data: () => {
     return {
+      images: false,
       formData: {
         category: 'Categories',
-        name: '',
         description: '',
         color: {
           'light-blue': {
@@ -155,11 +196,13 @@ export default {
           }
         },
         price: '',
+        bestsellers: false,
+        images: null,
       }
     }
   },
   methods: {
-    handleAddProducts() {
+    async handleAddProducts() {
       const rows = this.$refs.table.rows
 
       for (let i = 1; i < rows.length; i++) {
@@ -181,16 +224,101 @@ export default {
         })
       }
 
-      
-      axios.post('http://localhost:3000/api/goods', this.formData)
+      const fd = new FormData(this.$refs.form)
+      fd.append('color', this.formData.color)
+      fd.append('bestsellers', this.formData.bestsellers)
+
+      axios.post('http://localhost:3000/api/goods', fd)
         .then(response => console.log(response))
         .catch(e => console.log(e))
+
+      this.formReset()
+    },
+    handleFileUpload() {
+      const files = this.$refs.images.files
+      this.images = true
+
+      files.forEach(f => {
+        if (!f.type.match('image.*')) {
+          alert("Загружаем только картинки....")
+        }
+
+        const reader = new FileReader()
+        reader.onload = e => {
+          this.formData.imageSrc = e.target.result
+          const span = document.createElement('span')
+          const div = this.$refs.imgContainer
+
+          const style = 'style="height: 100px; margin-right: 10px"'
+          span.innerHTML = ['<img class="thumb"', style, 'title="', escape(f.name), '" src="',  e.target.result, '" />'].join('')
+          div.insertBefore(span, null);
+        }
+
+        reader.readAsDataURL(f)
+      })
+    },
+    formReset() {
+      this.formData = {
+        category: 'Categories',
+        description: '',
+        color: {
+          'light-blue': {
+            xs: 0,
+            s: 0,
+            m: 0,
+            l: 0,
+            xl: 0
+          },
+          'dark-blue': {
+            xs: 0,
+            s: 0,
+            m: 0,
+            l: 0,
+            xl: 0
+          },
+          'grey': {
+            xs: 0,
+            s: 0,
+            m: 0,
+            l: 0,
+            xl: 0
+          },
+          'black': {
+            xs: 0,
+            s: 0,
+            m: 0,
+            l: 0,
+            xl: 0
+          },
+          'white': {
+            xs: 0,
+            s: 0,
+            m: 0,
+            l: 0,
+            xl: 0
+          },
+          'blue': {
+            xs: 0,
+            s: 0,
+            m: 0,
+            l: 0,
+            xl: 0
+          }
+        },
+        price: '',
+        bestsellers: false,
+        images: null,
+      }
+      this.images = false
     }
   }
 }
 </script>
 
 <style lang="sass" scoped>
+  .add-file-wrapper
+    padding-top: 32px
+
   #productDescription
     resize: none
 
@@ -239,4 +367,7 @@ export default {
     width: 100%
     text-align: center
     color: #fff
+
+  .form-check
+    padding: 35px 0 0 50px
 </style>

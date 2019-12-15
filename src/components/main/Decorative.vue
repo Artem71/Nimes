@@ -1,59 +1,34 @@
 <template>
-  <div class="decorative-touches" ref="div">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
+  <div class="decor-wrapper" :style="{'height': height, 'width': width}">
+    <div class="decorative-touches" ref="div">
+      <span v-for="span of 24" :key="span"></span>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  mounted() {
-    let spans = this.$refs.div.children
-
-    let right = -110
-    spans.forEach((span) => {
-      span.style.right += right + 'px'
-      right += 19
-    })
-    
-  }
+  props: ['width', 'height']
 }
 </script>
 
 <style lang="sass" scoped>
-  .decorative-touches
-    position: relative
+  .decor-wrapper
     display: flex
-    flex-direction: column
-    width: 232px
-    height: 176px
+    justify-content: center
+    align-items: center
     overflow: hidden
+    
+  .decorative-touches
+    width: 100%
+    height: 100%
+    transform: rotate(-145deg) translateY(-45px)
 
     span
-      position: absolute
-      top: 0
-      width: 250px
+      display: block
+      width: 200%
       height: 2px
+      margin-left: -50%
+      margin-bottom: 10px
       background-color: #151C22
-      transform: rotate(45deg) translateX(125px)
 </style>

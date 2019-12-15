@@ -1,8 +1,8 @@
 <template>
-  <div class="wrapper container">
+  <div class="wrapper col-12">
     <div class="d-flex justify-content-between">
       <h2>{{title}}</h2>
-      <a href="#">
+      <a @click.prevent="showAllBestsellers" href="#">
         View all
         <span></span>
       </a>
@@ -12,7 +12,12 @@
 
 <script>
 export default {
-  props: ['title']
+  props: ['title'],
+  methods: {
+    showAllBestsellers() {
+      console.log('showAllBestsellers')
+    }
+  }
 }
 </script>
 

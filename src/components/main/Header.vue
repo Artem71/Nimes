@@ -8,9 +8,9 @@
       </div>
 
       <div class="header-img">
-        <Decorative class="decor-top" />
+        <Decorative :width="'232px'" :height="'176px'" class="decor-top" />
         <img class="img" src="@/assets/main/main-header.jpg" alt="woman">
-        <Decorative class="decor-bottom" />
+        <Decorative :width="'232px'" :height="'176px'" class="decor-bottom" />
       </div>
 
       <i class="fas fa-long-arrow-alt-down"></i>
@@ -69,12 +69,6 @@ export default {
     font-size: 128px
     font-weight: bold
     text-transform: uppercase
-
-  .btn 
-    padding: 24px
-    background-color: #151c22
-    color: #fff
-    border-radius: 0
 
   .header-img
     position: relative

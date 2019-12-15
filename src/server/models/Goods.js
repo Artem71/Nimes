@@ -1,12 +1,24 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose
 
-const Good = new Schema({
-  category: String,
-  name: String,
+const goodsSchema = new Schema({
+  category: {
+    type: String,
+    required: true
+  },
   description: String,
   color: Object,
-  price: String
+  price: {
+    type: Number,
+    required: true
+  },
+  images: Array,
+  bestsellers: {
+    type: Boolean,
+    default: false
+  }
+}, {
+  versionKey: false,
 })
 
-module.exports = mongoose.model('Good', Good)
+module.exports = mongoose.model('goods', goodsSchema)

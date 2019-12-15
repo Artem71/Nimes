@@ -17,7 +17,7 @@
       </ul>
     </div>
 
-    <router-link to="/categories" class="logo">Nimes</router-link>
+    <router-link to="/" class="logo">Nimes</router-link>
 
     <div class="right-menu-wrapper">
       <ul 
@@ -39,15 +39,6 @@
     </div>
   </nav>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-    }
-  }
-}
-</script>
 
 <style lang="sass" scoped>
   nav 
