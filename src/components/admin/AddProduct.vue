@@ -120,6 +120,13 @@
                     name="price"
               >
             </div>
+            <div class="form-group col-md-6">
+              <label for="productGender">Выберите категорию продукта</label>
+              <select class="form-control" id="productGender" v-model="formData.gender" name="gender">
+                <option>Man</option>
+                <option>Woman</option>
+              </select>
+            </div>
             <div class="form-check">
               <input 
                 class="form-check-input" 
@@ -196,6 +203,7 @@ export default {
           }
         },
         price: '',
+        gender: 'man',
         bestsellers: false,
         images: null,
       }

@@ -1,16 +1,17 @@
 <template>
   <div>
-    <Navbar />
-    <h1>categories</h1>
+    <app-navbar />
+    <app-header />
   </div>
 </template>
 
 <script>
-import Navbar from '@/components/app/Navbar.vue'
+import AppNavbar from '@/components/app/Navbar.vue'
+import AppHeader from '@/components/app/AppHeader.vue'
 
 export default {
   components: {
-    Navbar
+    AppNavbar, AppHeader
   }  
 }
 </script>

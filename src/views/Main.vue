@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-navbar />
-    <app-header />
+    <main-header />
     <div class="container" :class="{'text-center': loading}">
 
       <div class="row">
@@ -40,8 +40,9 @@
             <categories-card :category="category" :index="i" />
           </div>
         </div>
-          
       </div>
+
+      <app-footer />
 
     </div>
   </div>
@@ -50,11 +51,12 @@
 <script>
 
 import AppNavbar from '@/components/app/Navbar.vue'
-import AppHeader from '@/components/main/Header.vue'
+import MainHeader from '@/components/main/MainHeader.vue'
 import BlockTitle from '@/components/app/BlockTitle.vue'
 import PreviewCard from '@/components/app/PreviewCard.vue'
 import CategoriesCard from '@/components/main/CategoriesCard.vue'
 import MiddleBlockFall from '@/components/main/MiddleBlockFall.vue'
+import AppFooter from '@/components/app/Footer.vue'
 
 export default {
   data() {
@@ -75,13 +77,18 @@ export default {
     } 
   },
   components: {
-    AppNavbar, AppHeader, BlockTitle, PreviewCard, MiddleBlockFall, 
-    CategoriesCard
+    AppNavbar, MainHeader, BlockTitle, PreviewCard, MiddleBlockFall, 
+    CategoriesCard, AppFooter
   },
   async mounted() {
-    this.$store.dispatch('fetchBestSellersCards')
+    try {
+      await this.$store.dispatch('fetchBestSellersCards')
+      this.loading = false
+    } catch (e) {
+      console.log(e)
+    }
+
     this.loading = false
-    
   }
 }
 </script>

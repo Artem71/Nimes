@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <header class="wrapper">
     <div class="header-wrapper container">
       <div class="header-content">
         <h2>The quality you deserve</h2>
@@ -24,11 +24,11 @@
         </li>
       </ul>
     </div>
-  </div>
+  </header>
 </template>
 
 <script>
-import Decorative from '@/components/main/Decorative.vue'
+import Decorative from '@/components/app/Decorative.vue'
 
 export default {
   components: {

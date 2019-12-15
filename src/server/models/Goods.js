@@ -12,6 +12,10 @@ const goodsSchema = new Schema({
     type: Number,
     required: true
   },
+  gender: {
+    type: String,
+    default: 'man'
+  },
   images: Array,
   bestsellers: {
     type: Boolean,
